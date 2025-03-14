@@ -1,0 +1,31 @@
+{
+	"name": "SnowflakeTable3",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Snowflake1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SnowflakeV2Table",
+		"schema": [
+			{
+				"name": "PRODUCT_ID",
+				"type": "NUMBER",
+				"precision": 38,
+				"scale": 0
+			},
+			{
+				"name": "PRODUCT_FAMILY",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "PRODUCT_SUB_FAMILY",
+				"type": "VARCHAR"
+			}
+		],
+		"typeProperties": {
+			"schema": "RAW",
+			"table": "PRODUCTS"
+		}
+	}
+}

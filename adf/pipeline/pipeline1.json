@@ -1,0 +1,459 @@
+{
+	"name": "pipeline1",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "SnowflakeV2Sink",
+						"importSettings": {
+							"type": "SnowflakeImportCopyCommand"
+						}
+					},
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "BLOBLSforstaging",
+							"type": "LinkedServiceReference"
+						}
+					},
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "customer_id",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "CUSTOMER_ID",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "country",
+									"type": "String"
+								},
+								"sink": {
+									"name": "COUNTRY",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "region",
+									"type": "String"
+								},
+								"sink": {
+									"name": "REGION",
+									"type": "String"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SqlServerTable1",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "SnowflakeTable1",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Copy data2",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Copy data1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "SnowflakeV2Sink",
+						"importSettings": {
+							"type": "SnowflakeImportCopyCommand"
+						}
+					},
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "BLOBLSforstaging",
+							"type": "LinkedServiceReference"
+						}
+					},
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "company",
+									"type": "String"
+								},
+								"sink": {
+									"name": "COMPANY",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "customer_id",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "CUSTOMER_ID",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "customername",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CUSTOMERNAME",
+									"type": "String"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SqlServerTable2",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "SnowflakeTable2",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Copy data3",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Copy data2",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "SnowflakeV2Sink",
+						"importSettings": {
+							"type": "SnowflakeImportCopyCommand"
+						}
+					},
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "BLOBLSforstaging",
+							"type": "LinkedServiceReference"
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SqlServerTable3",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "SnowflakeTable3",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Copy data4",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Copy data3",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "SnowflakeV2Sink",
+						"importSettings": {
+							"type": "SnowflakeImportCopyCommand"
+						}
+					},
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "BLOBLSforstaging",
+							"type": "LinkedServiceReference"
+						}
+					},
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "customer_id",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "CUSTOMER_ID",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "product_id",
+									"type": "String"
+								},
+								"sink": {
+									"name": "PRODUCT_ID",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "payment_month",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "PAYMENT_MONTH",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "revenue_type",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "REVENUE_TYPE",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "revenue",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "REVENUE",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "quantity",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "QUANTITY",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "dimension_1",
+									"type": "String"
+								},
+								"sink": {
+									"name": "DIMENSION_1",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "dimension_2",
+									"type": "String"
+								},
+								"sink": {
+									"name": "DIMENSION_2",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "dimension_3",
+									"type": "String"
+								},
+								"sink": {
+									"name": "DIMENSION_3",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "dimension_4",
+									"type": "String"
+								},
+								"sink": {
+									"name": "DIMENSION_4",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "dimension_5",
+									"type": "String"
+								},
+								"sink": {
+									"name": "DIMENSION_5",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "dimension_6",
+									"type": "String"
+								},
+								"sink": {
+									"name": "DIMENSION_6",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "dimension_7",
+									"type": "String"
+								},
+								"sink": {
+									"name": "DIMENSION_7",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "dimension_8",
+									"type": "String"
+								},
+								"sink": {
+									"name": "DIMENSION_8",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "dimension_9",
+									"type": "String"
+								},
+								"sink": {
+									"name": "DIMENSION_9",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "dimension_10",
+									"type": "String"
+								},
+								"sink": {
+									"name": "DIMENSION_10",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "companies",
+									"type": "String"
+								},
+								"sink": {
+									"name": "COMPANIES",
+									"type": "String"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SqlServerTable4",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "SnowflakeTable4",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"variables": {
+			"ReadTables": {
+				"type": "Array"
+			}
+		},
+		"annotations": []
+	}
+}

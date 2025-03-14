@@ -1,0 +1,9 @@
+{
+	"name": "OnlineLearningPlatform",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "34aaa209-88f9-4e0a-9e07-826d8b1632ca",
+		"tenantId": "2800c0a0-70e9-49be-8733-faeaa6aced99"
+	}
+}

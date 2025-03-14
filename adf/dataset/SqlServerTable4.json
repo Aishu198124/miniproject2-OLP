@@ -1,0 +1,90 @@
+{
+	"name": "SqlServerTable4",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SqlServer1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "customer_id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "product_id",
+				"type": "nvarchar"
+			},
+			{
+				"name": "payment_month",
+				"type": "date"
+			},
+			{
+				"name": "revenue_type",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "revenue",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 5
+			},
+			{
+				"name": "quantity",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "dimension_1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "dimension_2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "dimension_3",
+				"type": "nvarchar"
+			},
+			{
+				"name": "dimension_4",
+				"type": "nvarchar"
+			},
+			{
+				"name": "dimension_5",
+				"type": "nvarchar"
+			},
+			{
+				"name": "dimension_6",
+				"type": "nvarchar"
+			},
+			{
+				"name": "dimension_7",
+				"type": "nvarchar"
+			},
+			{
+				"name": "dimension_8",
+				"type": "nvarchar"
+			},
+			{
+				"name": "dimension_9",
+				"type": "nvarchar"
+			},
+			{
+				"name": "dimension_10",
+				"type": "nvarchar"
+			},
+			{
+				"name": "companies",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "transactions"
+		}
+	}
+}
